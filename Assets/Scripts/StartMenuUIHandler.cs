@@ -12,12 +12,17 @@ public class StartMenuUIHandler : MonoBehaviour
     private void Start()
     {
         _usernameInput.text = GameManager.Instance.GetUsername();
-        _bestScoreText.text = "Best Score : " + GameManager.Instance.GetUsername() +
-                              " : " + GameManager.Instance.GetHighScore();
+    }
+
+    private void Update()
+    {
+        _bestScoreText.text = $"Best Score : {GameManager.Instance.GetUsername()} : " +
+                              $"{GameManager.Instance.GetHighScore()}";
     }
 
     public void GetUsername()
     {
         GameManager.Instance.SetUsername(_usernameInput.text);
+        _usernameInput.text = GameManager.Instance.GetUsername();
     }
 }

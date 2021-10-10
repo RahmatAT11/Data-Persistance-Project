@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     public void SetUsername(string input)
     {
         _username = input;
-        SaveUsername();
+        SaveGame();
     }
 
     public string GetUsername()
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     public void SetHighScore(int value)
     {
         _highScore = value;
-        SaveHighScore();
+        SaveGame();
     }
 
     public int GetHighScore()
@@ -76,20 +76,10 @@ public class GameManager : MonoBehaviour
         return _highScore;
     }
 
-    private void SaveUsername()
+    private void SaveGame()
     {
         SaveData data = new SaveData();
         data.playerName = _username;
-
-        string path = Application.persistentDataPath + "/savedata.json";
-        string json = JsonUtility.ToJson(data);
-        
-        File.WriteAllText(path, json);
-    }
-    
-    private void SaveHighScore()
-    {
-        SaveData data = new SaveData();
         data.highScore = _highScore;
 
         string path = Application.persistentDataPath + "/savedata.json";
