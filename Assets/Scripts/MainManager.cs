@@ -80,8 +80,12 @@ public class MainManager : MonoBehaviour
         m_GameOver = true;
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.SetHighScore(m_Points);
-            HighScoreText.text = $"Best Score : {GameManager.Instance.GetUsername()} : {m_Points}";
+            bool isCurrentScoreHigher = m_Points >= GameManager.Instance.GetHighScore();
+            if (isCurrentScoreHigher)
+            {
+                GameManager.Instance.SetHighScore(m_Points);
+                HighScoreText.text = $"Best Score : {GameManager.Instance.GetUsername()} : {m_Points}";
+            }
         }
         GameOverText.SetActive(true);
     }
